@@ -11,7 +11,7 @@ from Crypto.Util.Padding import pad, unpad
 # exchanging public keys and calculate secret keys using public keys.
 # Then subsequent mesgs (further communications) are encrypted using secret keys.
 def dhp(p: int, g: int, m_alice: str, m_bob: str):
-   
+    
    alice_prviate_key = random.randint(2,p-1)  # ℤp 
    alice_public_key = pow(g, alice_prviate_key, p) # g^a % p
    

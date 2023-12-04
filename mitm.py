@@ -48,17 +48,38 @@ def dhp(p: int, g: int, m_alice: str, m_bob: str):
     print(f"{m_alice_received = }")
     print(f"{m_bob_received = }")
     
-    
+
     
 # TODO: complete mitm 
 def mitm(p: int , g: int, m_alice: str, m_bob: str):
-    
-    alice_prviate_key = random.randint(2,p-1)  # ℤp 
-    alice_public_key = pow(g, alice_prviate_key, p) # g^a % p
-    
+    alice = Person(p, g)
+    bob = Person(p, g)
     
     
-    bob_private_key = random.randint(2,p-1)
-    bob_public_key = pow(g, bob_private_key, p)
+    # Mallry tricks : A->p B->p
+    alice.calculate_shared_num_and_key(p)
+    bob.calculate_shared_num_and_key(p)
     
-    mallory_intercep_alice_key = alice_public_key
+    ctext_alice =  alice.encrypt_msg(m_alice)
+    ctext_bob =  bob.encrypt_msg(m_bob)
+    
+    # Mallry comutes k with s is 0 becuase both Aplice and Bob think s = p^a % p = 0 
+    k = sha256((0).to_bytes(128, 'big')).digest()[:16]
+    
+    # Alice and Bob can still see their msgs without knowing Mallry's existance
+    m_alice_received =  alice.decrypt_msg(ctext_bob)
+    m_bob_received =  bob.decrypt_msg(ctext_alice)
+    
+    print(f"{m_alice_received = }")
+    print(f"{m_bob_received = }")
+    
+    # Mallry decrypts the object 
+    decryptor_mallry_for_alice= AES.new(k, AES.MODE_CBC, iv=k)
+    decryptor_mallry_for_bob= AES.new(k, AES.MODE_CBC, iv=k) 
+    
+    m_mallry_for_alice= unpad(decryptor_mallry_for_alice.decrypt(ctext_alice), 16).decode()
+    m_mallry_for_bob = unpad(decryptor_mallry_for_bob.decrypt(ctext_bob), 16).decode()
+    
+    print(f"{m_mallry_for_alice = }")
+    print(f"{m_mallry_for_bob = }")
+    
