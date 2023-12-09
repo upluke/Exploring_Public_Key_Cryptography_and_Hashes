@@ -17,7 +17,8 @@ def dhp(p: int, g: int, m_alice: str, m_bob: str):
    
    bob_private_key = random.randint(2,p-1)
    bob_public_key = pow(g, bob_private_key, p)
-   
+   # g = generator
+   # p = prime modulus
    # a, b = private key
    # A = alice_public_key
    # B = bob_public_key

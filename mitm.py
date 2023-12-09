@@ -100,7 +100,7 @@ def mitm_b (p: int , mallory_g: int, m_alice: str, m_bob: str):
     ctext_bob =  bob.encrypt_msg(m_bob)
     
 
-    
+    # here some "=" means congruent to
     if mallory_g==1: # A = 1^a mod p =1  ->  s = 1^b mod p = 1   or s = g^ab mod p -> 1^ab mod p =1
         s = 1
     elif mallory_g ==p: # A = p^a mod p ->  s = 0^ab mod p = 0
