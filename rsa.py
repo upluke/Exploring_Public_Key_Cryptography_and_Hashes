@@ -1,9 +1,9 @@
 from Crypto.Util import number
 
+
 # https://en.wikipedia.org/wiki/RSA_(cryptosystem)   Key generation
 # 
-# 
-# 
+
 # ℤ^* n = {0<=integer<n}
 # p, q are secrets from Alice
 # d = ALice's private key
