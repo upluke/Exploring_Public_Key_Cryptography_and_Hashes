@@ -40,13 +40,14 @@ if __name__ == "__main__":
     s1= b"abc"
     s2= b"cbc"
     
-    # print_sha256(s1)
-    # print_sha256(s2)
+    print_sha256(s1)
+    print_sha256(s2)
     
     s3= b"abcdef"
     s4= b"abcdeg"
     # print_sha256(s3)
     # print_sha256(s4) 
+    
     # What do you observe? How many of the bytes are different between the two digests?
     # all the bytes are different pretty much
     
@@ -72,13 +73,13 @@ if __name__ == "__main__":
     # plt.show()
    
     
-    for bits in range(2,52,2):
-        # start_time =perf_counter()
-        print("digest size: ",bits)
-        same_digest(bits)
-        # end_time =perf_counter() 
-        # print("digest size:", bits, " collision time: ", end_time - start_time)
-        print()
+    # for bits in range(2,52,2):
+    #     # start_time =perf_counter()
+    #     print("digest size: ",bits)
+    #     same_digest(bits)
+    #     # end_time =perf_counter() 
+    #     # print("digest size:", bits, " collision time: ", end_time - start_time)
+    #     print()
     
     # when truncate to 4 bytes:  The string b'\x00\x00\xb2T' and the string b'\x00\x00\xa06' has the same digest.
     

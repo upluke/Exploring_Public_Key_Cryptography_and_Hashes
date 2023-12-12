@@ -142,7 +142,14 @@ def mitm_b (p: int , mallory_g: int, m_alice: str, m_bob: str):
     print(f"{m_mallory_for_alice = }")
     print(f"{m_mallory_for_bob = }")
     
+
+
+if __name__ == "__main__":
+    # mitm_a(37, 5, "hi, bob", "hi alice")
     
+    # mitm_b(37, 1, "hi, bob", "hi alice") 
+    # mitm_b(37, 37, "hi, bob", "hi alice")
+    mitm_b(37, 36, "hi, bob", "hi alice")
     # Why were these attacks possible? What is necessary to prevent it?
     # * Mallory tricked alice and bob to think
     # * Mallory can change p and g
